@@ -35,9 +35,11 @@ export function buildOnboardPrompt(
   const cats = CATEGORIES.map((c) => `${c.id} (${c.labelEn})`).join(", ");
   const responseLanguage = uiLocale === "zh-CN"
     ? "Simplified Chinese"
-    : uiLocale === "ja"
-      ? "Japanese"
-      : "English";
+    : uiLocale === "zh-TW"
+      ? "Traditional Chinese (Taiwan)"
+      : uiLocale === "ja"
+        ? "Japanese"
+        : "English";
   return [
     "You are an onboarding assistant for an AI slide-deck generator.",
     "Given the user's topic, produce 6-7 SHORT clarifying questions that will make the deck much better.",
