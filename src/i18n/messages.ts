@@ -1,6 +1,7 @@
 import { en } from "./locales/en";
 import { ja } from "./locales/ja";
 import { zhCN } from "./locales/zh-CN";
+import { zhTW } from "./locales/zh-TW";
 import { LOCALES, type Dict, type Locale, type MessageKey, type MessageValues, type UiLocale } from "./types";
 
 export { LOCALES, LOCALE_LABEL, RTL_LOCALES } from "./types";
@@ -13,6 +14,7 @@ export const UI_LOCALE_STORAGE_KEY = "codex-slides-ui-locale";
 export const DICTS: Record<Locale, Dict> = {
   en,
   "zh-CN": zhCN,
+  "zh-TW": zhTW,
   ja,
 };
 

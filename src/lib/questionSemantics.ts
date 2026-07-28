@@ -70,7 +70,7 @@ export function semanticOptionLabel(
   return descriptor ? `${token} · ${descriptor}` : token;
 }
 
-export type QuestionCopyLocale = "zh-CN" | "en" | "ja";
+export type QuestionCopyLocale = "zh-CN" | "zh-TW" | "en" | "ja";
 
 /** Deterministic fallback when a model omits the required output-quality question. */
 export function resolutionQuestionCopy(locale: QuestionCopyLocale) {
@@ -84,6 +84,12 @@ export function resolutionQuestionCopy(locale: QuestionCopyLocale) {
     return {
       question: "出力解像度はどれにしますか？",
       labels: ["標準", "高画質", "超高画質"],
+    };
+  }
+  if (locale === "zh-TW") {
+    return {
+      question: "輸出清晰度要選哪一檔？",
+      labels: ["標準品質", "高畫質", "超高畫質"],
     };
   }
   return {

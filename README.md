@@ -576,8 +576,8 @@ Codex should:
 For an explicitly unattended or headless job, say so. Only then should Codex use the one-call
 `create_deck` / `create` fast path.
 
-A localized visual tutorial with copy-ready prompts in English, Simplified Chinese, and
-Japanese is linked from the home page beneath the composer, and is also reachable directly
+A localized visual tutorial with copy-ready prompts in English, Simplified Chinese,
+Traditional Chinese, and Japanese is linked from the home page beneath the composer, and is also reachable directly
 once the local app is running:
 
 ```text
@@ -676,7 +676,7 @@ Play mode, then export PPTX and PDF.
 - **Play mode** — full-screen, dual-window presentation with keyboard navigation and speaker
   notes.
 - **PDF and PPTX export** — export after visual review.
-- **English, Simplified Chinese, and Japanese UI** with strict key parity.
+- **English, Simplified Chinese, Traditional Chinese, and Japanese UI** with strict key parity.
 - **Portable Skill and typed MCP server** — the complete workflow remains available when one
   transport is unavailable.
 

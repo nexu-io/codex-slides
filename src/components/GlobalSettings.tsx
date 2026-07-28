@@ -84,7 +84,7 @@ export default function GlobalSettings() {
                 onClick={() => setLocale(value)}
               >
                 <span>
-                  <b>{value === "zh-CN" ? "文" : value === "ja" ? "日" : value.slice(0, 2).toUpperCase()}</b>
+                  <b>{value === "zh-CN" ? "简" : value === "zh-TW" ? "繁" : value === "ja" ? "日" : value.slice(0, 2).toUpperCase()}</b>
                   <span>{LOCALE_LABEL[value]}</span>
                 </span>
                 {locale === value && <Check size={16} weight="bold" aria-hidden="true" />}

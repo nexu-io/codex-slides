@@ -715,6 +715,8 @@ export const PRESENTATION_SCENARIOS: PresentationScenario[] = [
 export const FEATURED_SCENARIOS = PRESENTATION_SCENARIOS.filter((scenario) => scenario.featured);
 
 export function scenarioText(value: LocalizedScenarioText, locale: string): string {
+  // Traditional Chinese reuses the Simplified copy until scenario text is localized.
+  if (locale === "zh-TW") return value["zh-CN"];
   return value[locale as keyof LocalizedScenarioText] ?? value.en;
 }
 

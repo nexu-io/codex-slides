@@ -56,7 +56,11 @@ export const CATEGORIES: DeckCategory[] = [
 ];
 
 export function categoryLabel(category: DeckCategory, locale: string): string {
-  return locale === "zh-CN" ? category.labelZh : locale === "ja" ? category.labelJa : category.labelEn;
+  return locale === "zh-CN" || locale === "zh-TW"
+    ? category.labelZh
+    : locale === "ja"
+      ? category.labelJa
+      : category.labelEn;
 }
 
 // ---- seeded templates (5 paid categories x 3) --------------------------
