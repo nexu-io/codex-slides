@@ -66,10 +66,10 @@ npm run check:browser-first
 ## Internationalization
 
 English is the source dictionary. Every key must exist in English, Simplified
-Chinese, and Japanese with matching placeholders.
+Chinese, Traditional Chinese, and Japanese with matching placeholders.
 
 1. Add the English key to `src/i18n/locales/en.ts`.
-2. Add translations to `zh-CN.ts` and `ja.ts`.
+2. Add translations to `zh-CN.ts`, `zh-TW.ts`, and `ja.ts`.
 3. Use `t("key")` in components; do not add user-facing hard-coded strings.
 4. Run `npm run check:i18n`.
 
@@ -107,7 +107,7 @@ npm run check:mcp:live
 For UI changes, verify:
 
 - desktop, tablet, and phone layouts;
-- English, Simplified Chinese, and Japanese;
+- English, Simplified Chinese, Traditional Chinese, and Japanese;
 - keyboard focus and Escape behavior for dialogs;
 - reduced-motion behavior;
 - the actual live app, not only static markup.
