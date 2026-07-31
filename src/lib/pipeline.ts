@@ -2,11 +2,12 @@
 //
 //  - TEXT stages run on the selected engine: the zero-config Codex Responses
 //    endpoint (engine "codex") OR a detected local agent CLI (codex/claude/gemini).
-//  - IMAGE stages always run on Codex's zero-config image backend.
+//  - IMAGE stages use the configured image backend.
 //  - One image call per slide (the html-video lesson: never ask for the whole
 //    deck in one shot), each isolated so one failure doesn't sink the deck.
 
-import { generateSlideImage } from "./codex-image";
+import { generateSlideImage as generateCodexSlideImage } from "./codex-image";
+import { generateSlideImage, imageProviderSupportsReferences } from "./image";
 import { codexJson, codexText, parseLooseJson, type CodexInputAttachment } from "./codex-text";
 import { loadCommunityStyleReference } from "./communityReference";
 import { ensureCurrentDeckVersion } from "./deckVersions";
@@ -272,8 +273,13 @@ export async function renderProject(
   if (!project) throw new Error("project not found");
   const { config } = project;
 
-  const materialBuffers = loadProjectMaterialBuffers(id, project.materials);
-  const styleReference = await loadCommunityStyleReference(config.template, signal);
+  const includeImageReferences = imageProviderSupportsReferences();
+  const materialBuffers = includeImageReferences
+    ? loadProjectMaterialBuffers(id, project.materials)
+    : [];
+  const styleReference = includeImageReferences
+    ? await loadCommunityStyleReference(config.template, signal)
+    : null;
   const referenceBuffers = styleReference ? [styleReference, ...materialBuffers] : materialBuffers;
   const projectAttachments = loadProjectInputAttachments(id, project.materials);
   if (projectAttachments.length) {
@@ -553,8 +559,13 @@ export async function regeneratePage(
   );
   page.description = extractSlideText(descRaw);
 
-  const materialBuffers = loadProjectMaterialBuffers(id, project.materials);
-  const styleReference = await loadCommunityStyleReference(project.config.template, signal);
+  const includeImageReferences = imageProviderSupportsReferences();
+  const materialBuffers = includeImageReferences
+    ? loadProjectMaterialBuffers(id, project.materials)
+    : [];
+  const styleReference = includeImageReferences
+    ? await loadCommunityStyleReference(project.config.template, signal)
+    : null;
   const referenceBuffers = styleReference ? [styleReference, ...materialBuffers] : materialBuffers;
   const imgPrompt = buildImagePrompt(
     project.config,
@@ -608,7 +619,7 @@ export async function markEditPage(
   if (!page) throw new Error("page not found");
 
   const prompt = buildMarkEditPrompt(project.config, note);
-  const bytes = await generateSlideImage(prompt, {
+  const bytes = await generateCodexSlideImage(prompt, {
     // The annotation canvas already contains the complete original slide. A
     // second, clean copy used to compete with it and frequently made the model
     // return the untouched original instead of following the red marks.

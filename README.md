@@ -513,6 +513,14 @@ lock a direction in one click, search the full library, or keep the default.
 
 No separate OpenAI API key or `.env` file is required for the default Codex workflow.
 
+To use the MiniMax image backend, configure the server environment with
+`CODEX_SLIDES_IMAGE_PROVIDER=minimax` and `MINIMAX_API_KEY`. Set
+`MINIMAX_API_REGION` to `global_en` or `cn_zh`, and optionally set
+`MINIMAX_IMAGE_MODEL` to `image-01` or `image-01-live`. The backend accepts
+`MINIMAX_IMAGE_RESPONSE_FORMAT=url` or `base64`; set both
+`MINIMAX_IMAGE_WIDTH` and `MINIMAX_IMAGE_HEIGHT` to request explicit dimensions
+instead of the project aspect ratio.
+
 ### Install from the GitHub marketplace
 
 This repository includes a Codex marketplace manifest, so the repository itself can be added
