@@ -779,6 +779,7 @@ Environment variables:
 | `CODEX_SLIDES_URL` | `http://127.0.0.1:4311` | Browser and local API base URL |
 | `CODEX_SLIDES_HOME` | auto-detected | Source checkout used by the portable Skill |
 | `CODEX_SLIDES_APP_DIR` | plugin root | Source checkout used by the MCP server |
+| `CODEX_SLIDES_CODEX_MODEL` | `gpt-6-luna` | Top-level Codex Responses model; override with a model available to your ChatGPT Codex account |
 | `CODEX_SLIDES_LOG` | OS temp directory | Auto-start server log |
 | `CODEX_SLIDES_NO_AUTO_START` | unset | Set to `1` to disable MCP auto-start |
 | `CODEX_SLIDES_DATA_DIR` | `<repo>/data` | Project/template data root; desktop builds set this to the OS user-data directory |

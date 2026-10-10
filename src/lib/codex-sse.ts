@@ -2,6 +2,7 @@
 // image generation share. Zero-config: authenticated by the Codex CLI's token.
 
 import { getCodexAccessToken } from "./codex-auth";
+import { getCodexResponsesModel } from "./codexModel";
 import { abortError } from "./responseStream";
 
 export { sseEvents } from "./responseStream";
@@ -9,8 +10,8 @@ export { sseEvents } from "./responseStream";
 export const CODEX_RESPONSES_ENDPOINT =
   "https://chatgpt.com/backend-api/codex/responses";
 
-/** Top-level Responses model used for the codex backend request envelope. */
-export const CODEX_RESPONSES_MODEL = "gpt-5.4";
+/** Top-level Responses model used for the Codex backend request envelope. */
+export const CODEX_RESPONSES_MODEL = getCodexResponsesModel();
 
 const RETRYABLE_STATUS = new Set([429, 500, 502, 503, 504]);
 
